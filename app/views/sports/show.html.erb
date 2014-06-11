@@ -1,0 +1,11 @@
+<h1> <%= @sport.name %> </h1>
+
+<p> <%= link_to "See all #{@sport.name} teams", sport_teams_path(@sport.id) %></p>
+
+<p> <%= link_to "Create new " + @sport.name + " team", new_sport_team_path(@sport.id) %></p>
+
+
+<p> <%= link_to "Edit", edit_sport_path %></p>
+
+
+<p><%= link_to "Back", sports_path %></p>

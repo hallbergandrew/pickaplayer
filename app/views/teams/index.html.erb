@@ -1,0 +1,13 @@
+<h1> <%= @sport.name + " Teams" %></h1>
+
+<ul>
+<% @teams.each do |team| %>
+  <li><%=link_to team.name, sport_team_path(@sport.id, team.id) %> | |
+      <%= link_to "Delete", sport_team_path(@sport.id, team.id),
+              :confirm => "You sure?",
+              :method => "delete" %></li>
+  <% end %>
+</ul>
+
+<p> <%= link_to "Create new " + @sport.name + " team", new_sport_team_path(@sport.id) %></p>
+<p> <%= link_to "Back to All Sports", sports_path %></p>

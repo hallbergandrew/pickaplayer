@@ -1,0 +1,11 @@
+<h1> Sports Index Page </h1>
+
+<ul>
+<% @sports.each do |sport| %>
+  <li><%=link_to "#{sport.name}", sport_path(sport) %> | |
+      <%= link_to "Delete", sport_path(sport),
+              :confirm => "You sure?",
+              :method => "delete" %></li>
+  <% end %>
+</ul>
+<%= link_to "New sport", new_sport_path, :class=> "btn btn-default" %>

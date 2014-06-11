@@ -1,0 +1,18 @@
+<h1><%= @team.name %> </h1>
+
+
+<p>State/Province: <%= @team.state %></p>
+
+<p>City: <%= @team.city%></p>
+
+<p>Zipcode: <%= @team.zipcode %></p>
+
+
+
+
+<p> <%= link_to "Edit", edit_sport_team_path %></p>
+
+<p> <%= link_to "Add players", new_sport_team_player_path(@sport.id, @team.id) %></p>
+
+
+<p><%= link_to "Back", sport_teams_path %></p>
