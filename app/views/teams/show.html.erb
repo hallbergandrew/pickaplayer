@@ -12,6 +12,9 @@
 
 <p> <%= link_to "Edit", edit_sport_team_path %></p>
 
+<p> <%= link_to "View all players on the #{@team.name} team", sport_team_players_path(@sport.id, @team.id) %></p>
+
+
 <p> <%= link_to "Add players", new_sport_team_player_path(@sport.id, @team.id) %></p>
 
 

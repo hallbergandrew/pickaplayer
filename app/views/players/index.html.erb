@@ -1,0 +1,15 @@
+<%= content_for(:title, "#{@team.name}| Pickaplayer") %>
+
+<h1> <%=@team.name + " Team Roster" %> </h1>
+<ul>
+<% @players.each do |player| %>
+  <li><%=link_to player.first_name + " " + player.last_name, sport_team_player_path(@sport.id, @team.id, player.id) %> | |
+      <%= link_to "Delete", sport_team_player_path(@sport.id, @team.id, player.id),
+              :confirm => "You sure?",
+              :method => "delete" %></li>
+  <% end %>
+</ul>
+
+<p> <%= link_to "Add players to #{@team.name}", new_sport_team_player_path(@sport.id, @team.id) %></p>
+
+<p> <%= link_to "Back to Other Teams", sport_teams_path %></p>

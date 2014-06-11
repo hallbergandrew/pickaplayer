@@ -1,39 +1,43 @@
 class PlayersController < ApplicationController
   def index
     @sport = Sport.find(params[:sport_id])
-    @teams = Team.all
+    @team = Team.find(params[:team_id])
+    @players = Player.where(:team_id => @team.id)
 
   end
 
   def new
-    @team = Team.new
+    @team = Team.find(params[:team_id])
+    @player = Player.new
   end
 
   def create
-    @team = Team.new(team_params)
-    if @team.save
+    @player = Player.new(player_params)
+    if @player.save
       flash[:notice] = "Contact created."
-      redirect_to sport_teams_path
+      redirect_to sport_team_players_path
     else
       render 'new'
     end
   end
 
   def show
-    @sport = Sport.find(params[:sport_id])
-    @team = Team.find(params[:id])
+    @team = Team.find(params[:team_id])
+    @player = Player.find(params[:id])
   end
 
   def edit
-    @team = Team.find(params[:id])
+    @player = Player.find(params[:id])
+    @team = Team.find(params[:team_id])
   end
 
   def update
     @sport = Sport.find(params[:sport_id])
-    @team = Team.find(params[:id])
-    if @team.update(team_params)
+    @team = Team.find(params[:team_id])
+    @player = Player.find(params[:id])
+    if @player.update(player_params)
       flash[:notice] = "Contact updated."
-      redirect_to sport_team_path(@sport.id, @team.id)
+      redirect_to sport_team_player_path(@sport.id, @team.id, @player.id)
 
     else
       render 'edit'
@@ -41,15 +45,15 @@ class PlayersController < ApplicationController
   end
 
   def destroy
-    @sport = Sport.find(params[:sport_id])
-    @team = Team.find(params[:id])
-    @team.destroy
+    @team = Team.find(params[:team_id])
+    @player = Player.find(params[:id])
+    @player.destroy
     flash[:notice] = "Contact deleted."
-    redirect_to sport_teams_path
+    redirect_to sport_team_players_path
   end
 
    private
-  def team_params
-    params.require(:team).permit(:name, :id, :sport_id, :city, :state, :zipcode, :team_id)
+  def player_params
+    params.require(:player).permit(:first_name, :last_name, :number, :position, :team_id, :id)
   end
 end
