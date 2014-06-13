@@ -1,5 +1,11 @@
 class DashboardController < ApplicationController
-  # before_filter :find_profile
+ def index
+  @teams = Team.all
+  @sports = Sport.all
+  # @sports_teams = Team.where(sport_id: sport.id)
+  @players = Player.all
+
+ end
 
   def show
     # if @profile != nil

@@ -1,5 +1,23 @@
 <h1> This is the page that allows you to do everything</h1>
 
 
-<p> Admin only functions </p>
+<% if current_user.admin? %>
+<p> USER IS ADMIN TRUE </P>
+<span><h2> SELECT A TEAM TO EDIT </h2>
+    <% @sports.each do |sport| %>
+      <%= sport.name %>
+      <ul>
+        <% @teams.where(sport_id: sport.id).each do |team| %>
+          <li><%= link_to team.name, sport_team_path(team.sport_id, team.id) %> || <%= link_to "Players", sport_team_players_path(team.sport_id, team.id)%></li>
+        <% end %>
+      </ul>
+    <% end %>
+<%= link_to "Add a new sport", sports_path, :class=> "btn btn-default" %>
+
+<h2> CURRENT SPORTS SUPPORTED
+
+
+  <% else %>
+<p> NORMAL USER </p>
+<% end %>
 <%= link_to "Add a Sport to application", sports_path, :class=> "btn btn-default" %>

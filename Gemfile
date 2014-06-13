@@ -17,6 +17,8 @@ gem 'remotipart'
 gem "nested_form"
 gem 'textacular'
 gem 'will_paginate'
+gem 'sass-rails'
+gem 'bootstrap-sass'
 
 group :production do
   gem 'rails_12factor'

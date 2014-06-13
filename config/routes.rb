@@ -1,13 +1,7 @@
 Rails.application.routes.draw do
   authenticated :user do
-    root :to => 'dashboard#show', :as => :authenticated_root
+    root :to => 'dashboard#index', :as => :authenticated_root
     # resources :sports, :only => [:show]
-  end
-
-  authenticated :admin_user do
-    root :to => 'admin_dashboard#index', :as => :admin_root
-    # resources :sports
-
   end
 
 
